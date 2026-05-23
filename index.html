@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FRAME — Estudio Audiovisual</title>
+<title>Studio 4.11 — Producción Audiovisual</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -23,7 +23,7 @@
 }
 
 html { scroll-behavior: smooth; }
-body { background: var(--white); color: var(--black); font-family: var(--font); font-weight: 400; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+body { background: var(--white); color: var(--black); font-family: var(--font); font-weight: 300; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
 
 /* ── NAV ── */
 nav {
@@ -38,7 +38,7 @@ nav {
 }
 .nav-logo { font-size: 1.1rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; }
 .nav-links { display: flex; gap: 2.25rem; list-style: none; }
-.nav-links a { font-size: 0.82rem; font-weight: 400; color: var(--g600); text-decoration: none; letter-spacing: 0.01em; transition: color 0.2s; }
+.nav-links a { font-size: 0.82rem; font-weight: 300; color: var(--g600); text-decoration: none; letter-spacing: 0.01em; transition: color 0.2s; }
 .nav-links a:hover { color: var(--black); }
 .nav-cta { background: var(--black); color: var(--white) !important; padding: 0.45rem 1.1rem; border-radius: 100px; font-size: 0.82rem !important; transition: opacity 0.2s, transform 0.15s !important; }
 .nav-cta:hover { opacity: 0.8 !important; transform: scale(1.02) !important; }
@@ -56,7 +56,7 @@ nav {
 }
 .hero-content { position: relative; z-index: 2; max-width: 640px; }
 .hero-tag {
-  display: inline-block; font-size: 0.68rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
+  display: inline-block; font-size: 0.68rem; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase;
   color: rgba(255,255,255,0.5); margin-bottom: 1.25rem;
   opacity: 0; transform: translateY(16px); animation: up 0.8s var(--ease) 0.2s forwards;
 }
@@ -69,7 +69,7 @@ nav {
   display: flex; gap: 0.75rem; align-items: center;
   opacity: 0; transform: translateY(16px); animation: up 0.9s var(--ease) 0.5s forwards;
 }
-.btn-w { background: var(--white); color: var(--black); padding: 0.75rem 2rem; border-radius: 100px; font-size: 0.85rem; font-weight: 400; text-decoration: none; transition: opacity 0.2s, transform 0.15s; letter-spacing: 0.01em; }
+.btn-w { background: var(--white); color: var(--black); padding: 0.75rem 2rem; border-radius: 100px; font-size: 0.85rem; font-weight: 300; text-decoration: none; transition: opacity 0.2s, transform 0.15s; letter-spacing: 0.01em; }
 .btn-w:hover { opacity: 0.88; transform: scale(1.02); }
 .btn-ghost { color: rgba(255,255,255,0.65); font-size: 0.85rem; text-decoration: none; display: flex; align-items: center; gap: 0.35rem; transition: color 0.2s, gap 0.2s; letter-spacing: 0.01em; }
 .btn-ghost:hover { color: var(--white); gap: 0.6rem; }
@@ -84,13 +84,13 @@ nav {
 /* ── TICKER ── */
 .ticker { background: var(--black); padding: 1rem 0; overflow: hidden; }
 .ticker-track { display: flex; gap: 2.5rem; width: max-content; animation: ticker 22s linear infinite; }
-.ticker-item { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.32); white-space: nowrap; display: flex; align-items: center; gap: 2.5rem; }
+.ticker-item { font-size: 0.72rem; font-weight: 300; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.32); white-space: nowrap; display: flex; align-items: center; gap: 2.5rem; }
 .ticker-item::after { content: '·'; color: rgba(255,255,255,0.15); font-size: 0.9rem; }
 
 /* ── SECTION BASE ── */
 .s { padding: 7rem 6%; }
 .s-sm { padding: 5rem 6%; }
-.label { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--g400); margin-bottom: 1rem; display: block; }
+.label { font-size: 0.68rem; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: var(--g400); margin-bottom: 1rem; display: block; }
 .h2 { font-size: clamp(2rem, 4vw, 3.8rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); }
 .h2 em { font-style: italic; color: var(--g400); }
 .body-text { font-size: 1rem; font-weight: 300; color: var(--g600); line-height: 1.75; max-width: 480px; }
@@ -100,20 +100,20 @@ nav {
 .numbers-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
 .num-item { padding: 3rem 2rem; border-right: 1px solid var(--g100); text-align: center; }
 .num-item:last-child { border-right: none; }
-.num-val { display: block; font-size: 2.8rem; font-weight: 300; letter-spacing: -0.04em; color: var(--black); line-height: 1; margin-bottom: 0.4rem; }
-.num-label { font-size: 0.75rem; font-weight: 400; color: var(--g400); letter-spacing: 0.06em; }
+.num-val { display: block; font-size: 2.8rem; font-weight: 600; letter-spacing: -0.04em; color: var(--black); line-height: 1; margin-bottom: 0.4rem; }
+.num-label { font-size: 0.75rem; font-weight: 300; color: var(--g400); letter-spacing: 0.06em; }
 
 /* ── SERVICES ── */
 .services-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
 .services-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--g100); border: 1px solid var(--g100); border-radius: 18px; overflow: hidden; }
 .svc { background: var(--white); padding: 2.5rem 2rem; transition: background 0.25s; }
 .svc:hover { background: var(--off); }
-.svc-num { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em; color: var(--g200); margin-bottom: 1.75rem; display: block; }
+.svc-num { font-size: 0.68rem; font-weight: 300; letter-spacing: 0.12em; color: var(--g200); margin-bottom: 1.75rem; display: block; }
 .svc-icon { font-size: 1.6rem; display: block; margin-bottom: 1rem; }
-.svc-title { font-size: 1.05rem; font-weight: 400; color: var(--black); margin-bottom: 0.6rem; line-height: 1.3; }
+.svc-title { font-size: 1.05rem; font-weight: 300; color: var(--black); margin-bottom: 0.6rem; line-height: 1.3; }
 .svc-desc { font-size: 0.82rem; font-weight: 300; color: var(--g600); line-height: 1.65; margin-bottom: 1.25rem; }
 .svc-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
-.tag { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.04em; color: var(--g600); border: 1px solid var(--g100); padding: 0.2rem 0.55rem; border-radius: 100px; }
+.tag { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.04em; color: var(--g600); border: 1px solid var(--g100); padding: 0.2rem 0.55rem; border-radius: 100px; }
 
 /* ── WORK IMAGE BANNER ── */
 .work-banner { margin: 0 6% 0; border-radius: 20px; overflow: hidden; aspect-ratio: 16/6; position: relative; }
@@ -150,8 +150,8 @@ nav {
 }
 .reel-card:hover .reel-play { background: rgba(255,255,255,0.25); transform: translate(-50%, -50%) scale(1.08); }
 .reel-info { padding: 1.25rem 1.4rem; background: var(--white); }
-.reel-category { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--g400); margin-bottom: 0.3rem; display: block; }
-.reel-title { font-size: 0.92rem; font-weight: 400; color: var(--black); line-height: 1.3; }
+.reel-category { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; color: var(--g400); margin-bottom: 0.3rem; display: block; }
+.reel-title { font-size: 0.92rem; font-weight: 300; color: var(--black); line-height: 1.3; }
 .reel-dots { display: flex; gap: 0.4rem; justify-content: center; margin-top: 2rem; padding: 0 6%; }
 .reel-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--g200); border: none; cursor: pointer; padding: 0; transition: background 0.2s, transform 0.2s; }
 .reel-dot.active { background: var(--black); transform: scale(1.2); }
@@ -166,11 +166,11 @@ nav {
   border-radius: 12px; padding: 1rem 1.25rem;
   display: flex; align-items: center; gap: 1rem;
 }
-.badge-big { font-size: 2.2rem; font-weight: 300; color: var(--black); letter-spacing: -0.04em; line-height: 1; }
+.badge-big { font-size: 2.2rem; font-weight: 600; color: var(--black); letter-spacing: -0.04em; line-height: 1; }
 .badge-text { font-size: 0.78rem; font-weight: 300; color: var(--g600); line-height: 1.5; }
 .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
 .stat { border-top: 1px solid var(--g100); padding-top: 1rem; }
-.stat-n { display: block; font-size: 2.2rem; font-weight: 300; letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.3rem; }
+.stat-n { display: block; font-size: 2.2rem; font-weight: 600; letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.3rem; }
 .stat-l { font-size: 0.75rem; font-weight: 300; color: var(--g600); }
 
 /* ── PROCESS ── */
@@ -185,8 +185,8 @@ nav {
 .process-steps { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border-radius: 14px; overflow: hidden; }
 .pstep { background: rgba(255,255,255,0.03); padding: 2rem 1.75rem; transition: background 0.25s; }
 .pstep:hover { background: rgba(255,255,255,0.07); }
-.pstep-num { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.14em; color: rgba(255,255,255,0.2); margin-bottom: 1.5rem; display: block; }
-.pstep-title { font-size: 0.95rem; font-weight: 400; color: rgba(255,255,255,0.88); margin-bottom: 0.6rem; }
+.pstep-num { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.14em; color: rgba(255,255,255,0.2); margin-bottom: 1.5rem; display: block; }
+.pstep-title { font-size: 0.95rem; font-weight: 300; color: rgba(255,255,255,0.88); margin-bottom: 0.6rem; }
 .pstep-desc { font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1.65; }
 
 /* ── PLATFORMS ── */
@@ -213,8 +213,8 @@ nav {
 .star { color: var(--black); font-size: 0.75rem; }
 .testi-text { font-size: 0.88rem; font-weight: 300; color: var(--g800); line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
 .testi-author { display: flex; align-items: center; gap: 0.75rem; border-top: 1px solid var(--g100); padding-top: 1.25rem; }
-.testi-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--g100); display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 400; color: var(--g600); flex-shrink: 0; }
-.testi-name { font-size: 0.82rem; font-weight: 400; color: var(--black); display: block; }
+.testi-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--g100); display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 300; color: var(--g600); flex-shrink: 0; }
+.testi-name { font-size: 0.82rem; font-weight: 300; color: var(--black); display: block; }
 .testi-role { font-size: 0.72rem; font-weight: 300; color: var(--g400); }
 
 /* ── CONTACT ── */
@@ -222,11 +222,11 @@ nav {
 .contact-info { padding-top: 0.5rem; }
 .contact-detail { display: flex; align-items: center; gap: 0.9rem; margin-top: 1.25rem; }
 .contact-icon { width: 36px; height: 36px; background: var(--g100); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
-.contact-detail-label { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g400); display: block; margin-bottom: 0.1rem; }
+.contact-detail-label { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g400); display: block; margin-bottom: 0.1rem; }
 .contact-detail a, .contact-detail span { font-size: 0.85rem; font-weight: 300; color: var(--black); text-decoration: none; }
 .form-box { background: var(--off); border-radius: 20px; padding: 2.5rem; }
 .fg { display: flex; flex-direction: column; margin-bottom: 1rem; }
-.fl { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g400); margin-bottom: 0.45rem; }
+.fl { font-size: 0.65rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g400); margin-bottom: 0.45rem; }
 .fi {
   font-family: var(--font); font-size: 0.88rem; font-weight: 300; color: var(--black);
   background: var(--white); border: 1px solid var(--g200); border-radius: 10px;
@@ -239,11 +239,11 @@ textarea.fi { resize: none; line-height: 1.6; }
 select.fi { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23a1a1a6' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.2rem; cursor: pointer; }
 .fg-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
 .fg-2col .fg { margin-bottom: 0; }
-.fsub { width: 100%; background: var(--black); color: var(--white); border: none; border-radius: 10px; padding: 0.85rem 1.5rem; font-family: var(--font); font-size: 0.88rem; font-weight: 400; cursor: pointer; transition: opacity 0.2s, transform 0.15s; letter-spacing: 0.01em; margin-top: 0.5rem; }
+.fsub { width: 100%; background: var(--black); color: var(--white); border: none; border-radius: 10px; padding: 0.85rem 1.5rem; font-family: var(--font); font-size: 0.88rem; font-weight: 300; cursor: pointer; transition: opacity 0.2s, transform 0.15s; letter-spacing: 0.01em; margin-top: 0.5rem; }
 .fsub:hover { opacity: 0.82; transform: scale(1.01); }
 .form-success { display: none; text-align: center; padding: 3.5rem 1rem; }
 .form-success-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
-.form-success-title { font-size: 1rem; font-weight: 400; margin-bottom: 0.4rem; }
+.form-success-title { font-size: 1rem; font-weight: 300; margin-bottom: 0.4rem; }
 .form-success-sub { font-size: 0.82rem; font-weight: 300; color: var(--g600); }
 .ferr { display: none; font-size: 0.75rem; color: #c0392b; margin-top: 0.5rem; font-weight: 300; }
 
@@ -285,7 +285,7 @@ footer { border-top: 1px solid var(--g100); padding: 2rem 6%; display: flex; ali
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Frame</a>
+  <a href="#" class="nav-logo">Studio 4.11</a>
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#trabajo">Trabajo</a></li>
@@ -340,6 +340,85 @@ footer { border-top: 1px solid var(--g100); padding: 2rem 6%; display: flex; ali
     <span class="ticker-item">Broadcast Design</span>
   </div>
 </div>
+
+<!-- LOGOS CLIENTES -->
+<section class="logos-section">
+  <p class="logos-label">Han confiado en nosotros</p>
+  <div class="logos-marquee">
+    <div class="logos-track">
+      <div class="logo-item"><img src="images/logo-dmg.png" alt="Digital Mastery Group"></div>
+      <div class="logo-item"><img src="images/logo-telemadrid.png" alt="TeleMadrid"></div>
+      <div class="logo-item"><img src="images/logo-agalega.png" alt="A Galega"></div>
+      <div class="logo-item"><img src="images/logo-upwork.png" alt="Upwork Top Rated"></div>
+      <div class="logo-item"><img src="images/logo-quickdivorce.png" alt="The Quick Divorce"></div>
+      <div class="logo-item"><img src="images/logo-layla.png" alt="Layla"></div>
+      <div class="logo-item"><img src="images/logo-buzztowr.png" alt="Buzz Towr Coffee"></div>
+      <!-- duplicate for seamless loop -->
+      <div class="logo-item"><img src="images/logo-dmg.png" alt="Digital Mastery Group"></div>
+      <div class="logo-item"><img src="images/logo-telemadrid.png" alt="TeleMadrid"></div>
+      <div class="logo-item"><img src="images/logo-agalega.png" alt="A Galega"></div>
+      <div class="logo-item"><img src="images/logo-upwork.png" alt="Upwork Top Rated"></div>
+      <div class="logo-item"><img src="images/logo-quickdivorce.png" alt="The Quick Divorce"></div>
+      <div class="logo-item"><img src="images/logo-layla.png" alt="Layla"></div>
+      <div class="logo-item"><img src="images/logo-buzztowr.png" alt="Buzz Towr Coffee"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+.logos-section {
+  padding: 3.5rem 0 3rem;
+  border-top: 1px solid var(--g100);
+  border-bottom: 1px solid var(--g100);
+  background: var(--white);
+  overflow: hidden;
+}
+.logos-label {
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--g200);
+  margin-bottom: 2rem;
+}
+.logos-marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+.logos-track {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  width: max-content;
+  animation: logoScroll 28s linear infinite;
+}
+.logos-track:hover { animation-play-state: paused; }
+.logo-item {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  opacity: 0.28;
+  filter: grayscale(100%);
+  transition: opacity 0.3s, filter 0.3s;
+}
+.logo-item:hover { opacity: 0.85; filter: grayscale(0%); }
+.logo-item img {
+  height: 32px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  display: block;
+}
+/* Upwork badge is wider, give it a bit more room */
+.logo-item:nth-child(4) img,
+.logo-item:nth-child(11) img { height: 40px; max-width: 160px; }
+@keyframes logoScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+</style>
 
 <!-- NUMBERS -->
 <section class="numbers">
@@ -719,7 +798,7 @@ footer { border-top: 1px solid var(--g100); padding: 2rem 6%; display: flex; ali
 
 <!-- FOOTER -->
 <footer>
-  <a href="#" class="footer-logo">Frame</a>
+  <a href="#" class="footer-logo">Studio 4.11</a>
   <ul class="footer-links">
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#trabajo">Trabajo</a></li>
@@ -727,7 +806,7 @@ footer { border-top: 1px solid var(--g100); padding: 2rem 6%; display: flex; ali
     <li><a href="#testimonios">Clientes</a></li>
     <li><a href="mailto:hola@frame.studio">hola@frame.studio</a></li>
   </ul>
-  <span class="footer-copy">© 2026 Frame Studio</span>
+  <span class="footer-copy">© 2026 Studio 4.11</span>
 </footer>
 
 <script>
