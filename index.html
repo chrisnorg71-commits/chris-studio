@@ -342,81 +342,100 @@ footer { border-top: 1px solid var(--g100); padding: 2rem 6%; display: flex; ali
 </div>
 
 <!-- LOGOS CLIENTES -->
-<section class="logos-section">
-  <p class="logos-label">Han confiado en nosotros</p>
-  <div class="logos-marquee">
-    <div class="logos-track">
-      <div class="logo-item"><img src="images/logo-dmg.png" alt="Digital Mastery Group"></div>
-      <div class="logo-item"><img src="images/logo-telemadrid.png" alt="TeleMadrid"></div>
-      <div class="logo-item"><img src="images/logo-agalega.png" alt="A Galega"></div>
-      <div class="logo-item"><img src="images/logo-upwork.png" alt="Upwork Top Rated"></div>
-      <div class="logo-item"><img src="images/logo-quickdivorce.png" alt="The Quick Divorce"></div>
-      <div class="logo-item"><img src="images/logo-layla.png" alt="Layla"></div>
-      <div class="logo-item"><img src="images/logo-buzztowr.png" alt="Buzz Towr Coffee"></div>
-      <!-- duplicate for seamless loop -->
-      <div class="logo-item"><img src="images/logo-dmg.png" alt="Digital Mastery Group"></div>
-      <div class="logo-item"><img src="images/logo-telemadrid.png" alt="TeleMadrid"></div>
-      <div class="logo-item"><img src="images/logo-agalega.png" alt="A Galega"></div>
-      <div class="logo-item"><img src="images/logo-upwork.png" alt="Upwork Top Rated"></div>
-      <div class="logo-item"><img src="images/logo-quickdivorce.png" alt="The Quick Divorce"></div>
-      <div class="logo-item"><img src="images/logo-layla.png" alt="Layla"></div>
-      <div class="logo-item"><img src="images/logo-buzztowr.png" alt="Buzz Towr Coffee"></div>
+<section class="logos-section rev">
+  <div class="logos-inner">
+    <div class="logos-head">
+      <span class="logos-label">Han confiado en nosotros</span>
+      <h2 class="logos-title">Marcas que<br>nos eligen</h2>
+    </div>
+    <div class="logos-grid">
+      <div class="logo-cell"><img src="images/logo-dmg.png" alt="Digital Mastery Group"></div>
+      <div class="logo-cell"><img src="images/logo-telemadrid.png" alt="TeleMadrid"></div>
+      <div class="logo-cell"><img src="images/logo-agalega.png" alt="A Galega"></div>
+      <div class="logo-cell"><img src="images/logo-quickdivorce.png" alt="The Quick Divorce"></div>
+      <div class="logo-cell"><img src="images/logo-layla.png" alt="Layla"></div>
+      <div class="logo-cell"><img src="images/logo-buzztowr.png" alt="Buzz Tower Coffee"></div>
     </div>
   </div>
 </section>
 
 <style>
 .logos-section {
-  padding: 3.5rem 0 3rem;
-  border-top: 1px solid var(--g100);
-  border-bottom: 1px solid var(--g100);
+  padding: 4rem 6%;
   background: var(--white);
-  overflow: hidden;
+}
+.logos-inner {
+  background: #000000;
+  border-radius: 24px;
+  padding: 5rem;
+}
+.logos-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  background: #000000;
+  border-radius: 24px;
+  padding: 5rem;
+}
+.logos-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 .logos-label {
-  text-align: center;
   font-size: 0.65rem;
   font-weight: 300;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--g200);
-  margin-bottom: 2rem;
+  color: rgba(255,255,255,0.25);
+  display: block;
+  margin-bottom: 0.75rem;
 }
-.logos-marquee {
+.logos-title {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--white);
+}
+.logos-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
 }
-.logos-track {
+.logo-cell {
+  background: rgba(255,255,255,0.02);
   display: flex;
   align-items: center;
-  gap: 4rem;
-  width: max-content;
-  animation: logoScroll 28s linear infinite;
+  justify-content: center;
+  padding: 2.25rem 1.5rem;
+  transition: background 0.25s;
 }
-.logos-track:hover { animation-play-state: paused; }
-.logo-item {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  opacity: 0.28;
-  filter: grayscale(100%);
-  transition: opacity 0.3s, filter 0.3s;
-}
-.logo-item:hover { opacity: 0.85; filter: grayscale(0%); }
-.logo-item img {
-  height: 32px;
-  width: auto;
-  max-width: 140px;
+.logo-cell:hover { background: rgba(255,255,255,0.06); }
+.logo-cell img {
+  width: 100%;
+  max-width: 110px;
+  height: 110px;
   object-fit: contain;
   display: block;
+  opacity: 0.7;
+  transition: opacity 0.25s;
 }
-/* Upwork badge is wider, give it a bit more room */
-.logo-item:nth-child(4) img,
-.logo-item:nth-child(11) img { height: 40px; max-width: 160px; }
-@keyframes logoScroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+.logo-cell:hover img { opacity: 1; }
+@media (max-width: 900px) {
+  .logos-section { padding: 2rem 4%; }
+  .logos-inner { padding: 3rem 2rem; border-radius: 16px; }
+  .logos-grid { grid-template-columns: repeat(3, 1fr); }
+  .logos-head { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 500px) {
+  .logos-grid { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 
