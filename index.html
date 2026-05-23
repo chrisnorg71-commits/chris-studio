@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FRAME — Estudio Audiovisual</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #080808;
+  --white: #ffffff;
+  --off: #f5f5f7;
+  --g100: #f0f0f2;
+  --g200: #d2d2d7;
+  --g400: #a1a1a6;
+  --g600: #6e6e73;
+  --g800: #1d1d1f;
+  --font: 'Poppins', sans-serif;
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--white); color: var(--black); font-family: var(--font); font-weight: 400; line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 6%; height: 56px;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: saturate(180%) blur(24px);
+  -webkit-backdrop-filter: saturate(180%) blur(24px);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  transition: background 0.3s;
+}
+.nav-logo { font-size: 1.1rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; }
+.nav-links { display: flex; gap: 2.25rem; list-style: none; }
+.nav-links a { font-size: 0.82rem; font-weight: 400; color: var(--g600); text-decoration: none; letter-spacing: 0.01em; transition: color 0.2s; }
+.nav-links a:hover { color: var(--black); }
+.nav-cta { background: var(--black); color: var(--white) !important; padding: 0.45rem 1.1rem; border-radius: 100px; font-size: 0.82rem !important; transition: opacity 0.2s, transform 0.15s !important; }
+.nav-cta:hover { opacity: 0.8 !important; transform: scale(1.02) !important; }
+
+/* ── HERO ── */
+.hero {
+  position: relative; min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start;
+  padding: 0 6% 7rem; overflow: hidden;
+}
+.hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-grad {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.2) 55%, rgba(0,0,0,0.05) 100%);
+}
+.hero-content { position: relative; z-index: 2; max-width: 640px; }
+.hero-tag {
+  display: inline-block; font-size: 0.68rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); margin-bottom: 1.25rem;
+  opacity: 0; transform: translateY(16px); animation: up 0.8s var(--ease) 0.2s forwards;
+}
+.hero h1 {
+  font-size: clamp(2.6rem, 5.5vw, 5.5rem); font-weight: 300; line-height: 1.08; letter-spacing: -0.02em;
+  color: var(--white); margin-bottom: 2.5rem;
+  opacity: 0; transform: translateY(22px); animation: up 0.9s var(--ease) 0.35s forwards;
+}
+.hero-btns {
+  display: flex; gap: 0.75rem; align-items: center;
+  opacity: 0; transform: translateY(16px); animation: up 0.9s var(--ease) 0.5s forwards;
+}
+.btn-w { background: var(--white); color: var(--black); padding: 0.75rem 2rem; border-radius: 100px; font-size: 0.85rem; font-weight: 400; text-decoration: none; transition: opacity 0.2s, transform 0.15s; letter-spacing: 0.01em; }
+.btn-w:hover { opacity: 0.88; transform: scale(1.02); }
+.btn-ghost { color: rgba(255,255,255,0.65); font-size: 0.85rem; text-decoration: none; display: flex; align-items: center; gap: 0.35rem; transition: color 0.2s, gap 0.2s; letter-spacing: 0.01em; }
+.btn-ghost:hover { color: var(--white); gap: 0.6rem; }
+.hero-scroll {
+  position: absolute; bottom: 2.5rem; right: 6%; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  color: rgba(255,255,255,0.3); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase;
+  opacity: 0; animation: fade 1s ease 1.2s forwards, bob 2.4s ease-in-out 2.2s infinite;
+}
+.hero-scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3)); }
+
+/* ── TICKER ── */
+.ticker { background: var(--black); padding: 1rem 0; overflow: hidden; }
+.ticker-track { display: flex; gap: 2.5rem; width: max-content; animation: ticker 22s linear infinite; }
+.ticker-item { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.32); white-space: nowrap; display: flex; align-items: center; gap: 2.5rem; }
+.ticker-item::after { content: '·'; color: rgba(255,255,255,0.15); font-size: 0.9rem; }
+
+/* ── SECTION BASE ── */
+.s { padding: 7rem 6%; }
+.s-sm { padding: 5rem 6%; }
+.label { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--g400); margin-bottom: 1rem; display: block; }
+.h2 { font-size: clamp(2rem, 4vw, 3.8rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); }
+.h2 em { font-style: italic; color: var(--g400); }
+.body-text { font-size: 1rem; font-weight: 300; color: var(--g600); line-height: 1.75; max-width: 480px; }
+
+/* ── NUMBERS STRIP ── */
+.numbers { background: var(--off); border-top: 1px solid var(--g100); border-bottom: 1px solid var(--g100); }
+.numbers-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.num-item { padding: 3rem 2rem; border-right: 1px solid var(--g100); text-align: center; }
+.num-item:last-child { border-right: none; }
+.num-val { display: block; font-size: 2.8rem; font-weight: 300; letter-spacing: -0.04em; color: var(--black); line-height: 1; margin-bottom: 0.4rem; }
+.num-label { font-size: 0.75rem; font-weight: 400; color: var(--g400); letter-spacing: 0.06em; }
+
+/* ── SERVICES ── */
+.services-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
+.services-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--g100); border: 1px solid var(--g100); border-radius: 18px; overflow: hidden; }
+.svc { background: var(--white); padding: 2.5rem 2rem; transition: background 0.25s; }
+.svc:hover { background: var(--off); }
+.svc-num { font-size: 0.68rem; font-weight: 400; letter-spacing: 0.12em; color: var(--g200); margin-bottom: 1.75rem; display: block; }
+.svc-icon { font-size: 1.6rem; display: block; margin-bottom: 1rem; }
+.svc-title { font-size: 1.05rem; font-weight: 400; color: var(--black); margin-bottom: 0.6rem; line-height: 1.3; }
+.svc-desc { font-size: 0.82rem; font-weight: 300; color: var(--g600); line-height: 1.65; margin-bottom: 1.25rem; }
+.svc-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.tag { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.04em; color: var(--g600); border: 1px solid var(--g100); padding: 0.2rem 0.55rem; border-radius: 100px; }
+
+/* ── WORK IMAGE BANNER ── */
+.work-banner { margin: 0 6% 0; border-radius: 20px; overflow: hidden; aspect-ratio: 16/6; position: relative; }
+.work-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ── SHOWREEL / VIDEO CAROUSEL ── */
+.reel-section { padding: 7rem 0; overflow: hidden; }
+.reel-header { padding: 0 6%; margin-bottom: 3rem; display: flex; align-items: flex-end; justify-content: space-between; }
+.reel-nav { display: flex; gap: 0.5rem; }
+.reel-btn {
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--g200);
+  background: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  color: var(--g600); font-size: 1rem; transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.reel-btn:hover { background: var(--black); border-color: var(--black); color: var(--white); }
+.reel-track-wrap { overflow: hidden; padding: 0 6%; }
+.reel-track { display: flex; gap: 1.25rem; transition: transform 0.55s cubic-bezier(0.25,0.1,0.25,1); will-change: transform; }
+.reel-card {
+  flex-shrink: 0; width: 420px; border-radius: 16px; overflow: hidden;
+  background: var(--g800); position: relative; cursor: pointer;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s;
+}
+.reel-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.14); }
+.reel-thumb { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; filter: brightness(0.88); transition: filter 0.3s; }
+.reel-card:hover .reel-thumb { filter: brightness(1); }
+.reel-play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.25);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); font-size: 1.1rem;
+  transition: background 0.2s, transform 0.2s;
+}
+.reel-card:hover .reel-play { background: rgba(255,255,255,0.25); transform: translate(-50%, -50%) scale(1.08); }
+.reel-info { padding: 1.25rem 1.4rem; background: var(--white); }
+.reel-category { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--g400); margin-bottom: 0.3rem; display: block; }
+.reel-title { font-size: 0.92rem; font-weight: 400; color: var(--black); line-height: 1.3; }
+.reel-dots { display: flex; gap: 0.4rem; justify-content: center; margin-top: 2rem; padding: 0 6%; }
+.reel-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--g200); border: none; cursor: pointer; padding: 0; transition: background 0.2s, transform 0.2s; }
+.reel-dot.active { background: var(--black); transform: scale(1.2); }
+
+/* ── ABOUT ── */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.about-img-wrap { position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 4/5; }
+.about-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.about-badge {
+  position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+  border-radius: 12px; padding: 1rem 1.25rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.badge-big { font-size: 2.2rem; font-weight: 300; color: var(--black); letter-spacing: -0.04em; line-height: 1; }
+.badge-text { font-size: 0.78rem; font-weight: 300; color: var(--g600); line-height: 1.5; }
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+.stat { border-top: 1px solid var(--g100); padding-top: 1rem; }
+.stat-n { display: block; font-size: 2.2rem; font-weight: 300; letter-spacing: -0.04em; line-height: 1; margin-bottom: 0.3rem; }
+.stat-l { font-size: 0.75rem; font-weight: 300; color: var(--g600); }
+
+/* ── PROCESS ── */
+.process-bg { background: var(--black); border-radius: 24px; margin: 0 2%; padding: 6rem; }
+.process-head { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
+.process-head .h2 { color: var(--white); }
+.process-head .h2 em { color: rgba(255,255,255,0.35); }
+.process-head .label { color: rgba(255,255,255,0.3); }
+.process-head .body-text { color: rgba(255,255,255,0.45); }
+.process-img { border-radius: 14px; overflow: hidden; aspect-ratio: 16/7; }
+.process-img img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.7; }
+.process-steps { margin-top: 3.5rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border-radius: 14px; overflow: hidden; }
+.pstep { background: rgba(255,255,255,0.03); padding: 2rem 1.75rem; transition: background 0.25s; }
+.pstep:hover { background: rgba(255,255,255,0.07); }
+.pstep-num { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.14em; color: rgba(255,255,255,0.2); margin-bottom: 1.5rem; display: block; }
+.pstep-title { font-size: 0.95rem; font-weight: 400; color: rgba(255,255,255,0.88); margin-bottom: 0.6rem; }
+.pstep-desc { font-size: 0.78rem; font-weight: 300; color: rgba(255,255,255,0.4); line-height: 1.65; }
+
+/* ── PLATFORMS ── */
+.platforms { text-align: center; }
+.platforms .h2 { margin: 1rem auto 1.5rem; }
+.platforms .body-text { margin: 0 auto 3rem; text-align: center; }
+.platform-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; }
+.pill { font-size: 0.8rem; font-weight: 300; color: var(--g600); border: 1px solid var(--g100); padding: 0.55rem 1.25rem; border-radius: 100px; display: flex; align-items: center; gap: 0.4rem; transition: border-color 0.2s, color 0.2s; }
+.pill:hover { border-color: var(--black); color: var(--black); }
+
+/* ── TESTIMONIALS ── */
+.testi-section { background: var(--off); padding: 7rem 6%; }
+.testi-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 4rem; }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.testi-card {
+  background: var(--white); border-radius: 16px; padding: 2rem;
+  border: 1px solid rgba(0,0,0,0.04);
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.25s;
+}
+.testi-card.vis { opacity: 1; transform: translateY(0); }
+.testi-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.07); }
+.testi-stars { display: flex; gap: 0.2rem; margin-bottom: 1.25rem; }
+.star { color: var(--black); font-size: 0.75rem; }
+.testi-text { font-size: 0.88rem; font-weight: 300; color: var(--g800); line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+.testi-author { display: flex; align-items: center; gap: 0.75rem; border-top: 1px solid var(--g100); padding-top: 1.25rem; }
+.testi-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--g100); display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 400; color: var(--g600); flex-shrink: 0; }
+.testi-name { font-size: 0.82rem; font-weight: 400; color: var(--black); display: block; }
+.testi-role { font-size: 0.72rem; font-weight: 300; color: var(--g400); }
+
+/* ── CONTACT ── */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+.contact-info { padding-top: 0.5rem; }
+.contact-detail { display: flex; align-items: center; gap: 0.9rem; margin-top: 1.25rem; }
+.contact-icon { width: 36px; height: 36px; background: var(--g100); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0; }
+.contact-detail-label { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g400); display: block; margin-bottom: 0.1rem; }
+.contact-detail a, .contact-detail span { font-size: 0.85rem; font-weight: 300; color: var(--black); text-decoration: none; }
+.form-box { background: var(--off); border-radius: 20px; padding: 2.5rem; }
+.fg { display: flex; flex-direction: column; margin-bottom: 1rem; }
+.fl { font-size: 0.65rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--g400); margin-bottom: 0.45rem; }
+.fi {
+  font-family: var(--font); font-size: 0.88rem; font-weight: 300; color: var(--black);
+  background: var(--white); border: 1px solid var(--g200); border-radius: 10px;
+  padding: 0.72rem 1rem; outline: none; transition: border-color 0.2s; width: 100%;
+  -webkit-appearance: none; appearance: none;
+}
+.fi:focus { border-color: var(--black); }
+.fi::placeholder { color: var(--g200); }
+textarea.fi { resize: none; line-height: 1.6; }
+select.fi { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23a1a1a6' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.2rem; cursor: pointer; }
+.fg-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem; }
+.fg-2col .fg { margin-bottom: 0; }
+.fsub { width: 100%; background: var(--black); color: var(--white); border: none; border-radius: 10px; padding: 0.85rem 1.5rem; font-family: var(--font); font-size: 0.88rem; font-weight: 400; cursor: pointer; transition: opacity 0.2s, transform 0.15s; letter-spacing: 0.01em; margin-top: 0.5rem; }
+.fsub:hover { opacity: 0.82; transform: scale(1.01); }
+.form-success { display: none; text-align: center; padding: 3.5rem 1rem; }
+.form-success-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+.form-success-title { font-size: 1rem; font-weight: 400; margin-bottom: 0.4rem; }
+.form-success-sub { font-size: 0.82rem; font-weight: 300; color: var(--g600); }
+.ferr { display: none; font-size: 0.75rem; color: #c0392b; margin-top: 0.5rem; font-weight: 300; }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--g100); padding: 2rem 6%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-logo { font-size: 0.9rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; }
+.footer-links { display: flex; gap: 2rem; list-style: none; }
+.footer-links a { font-size: 0.75rem; font-weight: 300; color: var(--g400); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--black); }
+.footer-copy { font-size: 0.72rem; font-weight: 300; color: var(--g200); }
+
+/* ── REVEAL ── */
+.rev { opacity: 0; transform: translateY(36px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.rev.vis { opacity: 1; transform: translateY(0); }
+
+/* ── ANIMATIONS ── */
+@keyframes up { to { opacity: 1; transform: translateY(0); } }
+@keyframes fade { to { opacity: 1; } }
+@keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+@keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .services-intro, .about-grid, .process-head, .testi-header, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .services-list { grid-template-columns: 1fr 1fr; }
+  .numbers-grid { grid-template-columns: repeat(2,1fr); }
+  .num-item:nth-child(2) { border-right: none; }
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .process-bg { padding: 3rem 2rem; margin: 0; border-radius: 0; }
+  .testi-grid { grid-template-columns: 1fr; }
+  .work-banner { margin: 0; border-radius: 0; }
+  .reel-card { width: 320px; }
+  nav .nav-links { display: none; }
+  .hero h1 { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Frame</a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#trabajo">Trabajo</a></li>
+    <li><a href="#sobre">Estudio</a></li>
+    <li><a href="#testimonios">Clientes</a></li>
+    <li><a href="#contacto" class="nav-cta">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img src="images/hero-bg.png" class="hero-img" alt="Producción audiovisual">
+  <div class="hero-grad"></div>
+  <div class="hero-content">
+    <span class="hero-tag">Producción · VFX · IA · Edición</span>
+    <h1>Estudio audiovisual.<br>Resultados reales.</h1>
+    <div class="hero-btns">
+      <a href="#trabajo" class="btn-w">Ver trabajo →</a>
+      <a href="#contacto" class="btn-ghost">Hablemos ↗</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="ticker-item">After Effects</span>
+    <span class="ticker-item">DaVinci Resolve</span>
+    <span class="ticker-item">Nuke</span>
+    <span class="ticker-item">Runway Gen-4</span>
+    <span class="ticker-item">Sora</span>
+    <span class="ticker-item">Motion Design</span>
+    <span class="ticker-item">Color Grading</span>
+    <span class="ticker-item">VFX Compositing</span>
+    <span class="ticker-item">Premiere Pro</span>
+    <span class="ticker-item">Generación IA</span>
+    <span class="ticker-item">Broadcast Design</span>
+    <span class="ticker-item">After Effects</span>
+    <span class="ticker-item">DaVinci Resolve</span>
+    <span class="ticker-item">Nuke</span>
+    <span class="ticker-item">Runway Gen-4</span>
+    <span class="ticker-item">Sora</span>
+    <span class="ticker-item">Motion Design</span>
+    <span class="ticker-item">Color Grading</span>
+    <span class="ticker-item">VFX Compositing</span>
+    <span class="ticker-item">Premiere Pro</span>
+    <span class="ticker-item">Generación IA</span>
+    <span class="ticker-item">Broadcast Design</span>
+  </div>
+</div>
+
+<!-- NUMBERS -->
+<section class="numbers">
+  <div class="numbers-grid">
+    <div class="num-item rev">
+      <span class="num-val">200+</span>
+      <span class="num-label">Proyectos entregados</span>
+    </div>
+    <div class="num-item rev" style="transition-delay:0.1s">
+      <span class="num-val">40+</span>
+      <span class="num-label">Clientes satisfechos</span>
+    </div>
+    <div class="num-item rev" style="transition-delay:0.2s">
+      <span class="num-val">8+</span>
+      <span class="num-label">Años de experiencia</span>
+    </div>
+    <div class="num-item rev" style="transition-delay:0.3s">
+      <span class="num-val">3</span>
+      <span class="num-label">Premios de producción</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="s" id="servicios">
+  <div class="services-intro rev">
+    <div>
+      <span class="label">Lo que hacemos</span>
+      <h2 class="h2">Cada formato.<br><em>Cada pantalla.</em></h2>
+    </div>
+    <p class="body-text">Desde efectos visuales de nivel cinematográfico hasta contenido generado con IA. Producción completa bajo un mismo techo.</p>
+  </div>
+  <div class="services-list">
+    <div class="svc rev" style="transition-delay:0s">
+      <span class="svc-num">01</span>
+      <span class="svc-icon">✦</span>
+      <h3 class="svc-title">Efectos Visuales</h3>
+      <p class="svc-desc">Compositing, tracking, rotoscopia y simulaciones de nivel cinematográfico.</p>
+      <div class="svc-tags"><span class="tag">After Effects</span><span class="tag">Nuke</span><span class="tag">Tracking 3D</span></div>
+    </div>
+    <div class="svc rev" style="transition-delay:0.08s">
+      <span class="svc-num">02</span>
+      <span class="svc-icon">◈</span>
+      <h3 class="svc-title">Generación con IA</h3>
+      <p class="svc-desc">Video y motion generativo. Conceptos imposibles hechos realidad en horas.</p>
+      <div class="svc-tags"><span class="tag">Runway</span><span class="tag">Sora</span><span class="tag">Kling</span></div>
+    </div>
+    <div class="svc rev" style="transition-delay:0.16s">
+      <span class="svc-num">03</span>
+      <span class="svc-icon">▣</span>
+      <h3 class="svc-title">TV & Broadcast</h3>
+      <p class="svc-desc">Aperturas, grafismo de noticias y formatos de alta exigencia técnica.</p>
+      <div class="svc-tags"><span class="tag">Broadcast</span><span class="tag">Motion Graphics</span><span class="tag">4K</span></div>
+    </div>
+    <div class="svc rev" style="transition-delay:0.24s">
+      <span class="svc-num">04</span>
+      <span class="svc-icon">◉</span>
+      <h3 class="svc-title">Marketing & Ads</h3>
+      <p class="svc-desc">Anuncios que detienen el scroll. Adaptados a cada plataforma y audiencia.</p>
+      <div class="svc-tags"><span class="tag">Reels</span><span class="tag">Pre-roll</span><span class="tag">Brand Film</span></div>
+    </div>
+    <div class="svc rev" style="transition-delay:0.32s">
+      <span class="svc-num">05</span>
+      <span class="svc-icon">▷</span>
+      <h3 class="svc-title">YouTube & Digital</h3>
+      <p class="svc-desc">Edición que retiene audiencia. Ritmo, gráficos y branding visual coherente.</p>
+      <div class="svc-tags"><span class="tag">Long-form</span><span class="tag">Short-form</span><span class="tag">Retención</span></div>
+    </div>
+    <div class="svc rev" style="transition-delay:0.4s">
+      <span class="svc-num">06</span>
+      <span class="svc-icon">◐</span>
+      <h3 class="svc-title">Color & Sonido</h3>
+      <p class="svc-desc">Etalonaje profesional y diseño sonoro. Imagen que deja huella sensorial.</p>
+      <div class="svc-tags"><span class="tag">DaVinci</span><span class="tag">LUT Design</span><span class="tag">Sound</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK BANNER -->
+<div class="work-banner rev">
+  <img src="images/timeline-vfx.png" alt="Timeline de edición VFX">
+</div>
+
+<!-- SHOWREEL CAROUSEL -->
+<section class="reel-section rev" id="trabajo">
+  <div class="reel-header">
+    <div>
+      <span class="label">Trabajo reciente</span>
+      <h2 class="h2">Proyectos <em>destacados</em></h2>
+    </div>
+    <div class="reel-nav">
+      <button class="reel-btn" id="reel-prev" aria-label="Anterior">&#8592;</button>
+      <button class="reel-btn" id="reel-next" aria-label="Siguiente">&#8594;</button>
+    </div>
+  </div>
+  <div class="reel-track-wrap">
+    <div class="reel-track" id="reel-track">
+
+      <div class="reel-card">
+        <img src="images/hero-bg.png" class="reel-thumb" alt="Spot Corporativo">
+        <div class="reel-play">&#9654;</div>
+        <div class="reel-info">
+          <span class="reel-category">VFX · IA Generativa</span>
+          <p class="reel-title">Spot Corporativo — Sci-Fi Product Launch</p>
+        </div>
+      </div>
+
+      <div class="reel-card">
+        <img src="images/editor-monitor.png" class="reel-thumb" alt="Documental TV">
+        <div class="reel-play">&#9654;</div>
+        <div class="reel-info">
+          <span class="reel-category">Broadcast · Edición</span>
+          <p class="reel-title">Documental — Canal Autonómico, 52min</p>
+        </div>
+      </div>
+
+      <div class="reel-card">
+        <img src="images/timeline-vfx.png" class="reel-thumb" alt="Campaña Digital">
+        <div class="reel-play">&#9654;</div>
+        <div class="reel-info">
+          <span class="reel-category">Marketing · Motion Design</span>
+          <p class="reel-title">Campaña Digital — Lanzamiento de Producto</p>
+        </div>
+      </div>
+
+      <div class="reel-card">
+        <img src="images/setup-doble-monitor.png" class="reel-thumb" alt="YouTube Series">
+        <div class="reel-play">&#9654;</div>
+        <div class="reel-info">
+          <span class="reel-category">YouTube · Color Grading</span>
+          <p class="reel-title">Serie YouTube — 1.2M vistas, 24 episodios</p>
+        </div>
+      </div>
+
+      <div class="reel-card">
+        <img src="images/hero-bg.png" class="reel-thumb" alt="AI Film">
+        <div class="reel-play">&#9654;</div>
+        <div class="reel-info">
+          <span class="reel-category">IA Generativa · VFX</span>
+          <p class="reel-title">Cortometraje IA — Festival Internacional</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="reel-dots" id="reel-dots">
+    <button class="reel-dot active" data-i="0"></button>
+    <button class="reel-dot" data-i="1"></button>
+    <button class="reel-dot" data-i="2"></button>
+    <button class="reel-dot" data-i="3"></button>
+    <button class="reel-dot" data-i="4"></button>
+  </div>
+</section>
+
+<!-- SOBRE / ABOUT -->
+<section class="s" id="sobre">
+  <div class="about-grid">
+    <div class="about-img-wrap rev">
+      <img src="images/editor-monitor.png" alt="Editor trabajando">
+      <div class="about-badge">
+        <span class="badge-big">8+</span>
+        <span class="badge-text">años en producción<br>audiovisual profesional</span>
+      </div>
+    </div>
+    <div class="rev" style="transition-delay:0.15s">
+      <span class="label">El estudio</span>
+      <h2 class="h2">Donde la técnica<br>encuentra <em>la visión</em></h2>
+      <p class="body-text" style="margin-top:1.25rem">Vivo en el cruce entre la artesanía clásica del video y las posibilidades infinitas de la inteligencia artificial. Cada proyecto es una oportunidad de empujar los límites de lo visible.</p>
+      <p class="body-text" style="margin-top:0.85rem">Trabajo con marcas, productoras y creadores que buscan algo más que contenido: buscan impacto visual que permanezca.</p>
+      <div class="about-stats">
+        <div class="stat"><span class="stat-n">200+</span><span class="stat-l">Proyectos entregados</span></div>
+        <div class="stat"><span class="stat-n">40+</span><span class="stat-l">Clientes activos</span></div>
+        <div class="stat"><span class="stat-n">3</span><span class="stat-l">Premios</span></div>
+        <div class="stat"><span class="stat-n">∞</span><span class="stat-l">Ideas por explorar</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section class="s-sm">
+  <div class="process-bg rev">
+    <div class="process-head">
+      <div>
+        <span class="label">Cómo trabajamos</span>
+        <h2 class="h2">Un proceso<br><em>sin fricciones</em></h2>
+      </div>
+      <p class="body-text">De la idea al entregable final. Claro, rápido y con comunicación constante en cada fase.</p>
+    </div>
+    <div class="process-img">
+      <img src="images/setup-doble-monitor.png" alt="Setup de producción">
+    </div>
+    <div class="process-steps">
+      <div class="pstep">
+        <span class="pstep-num">01</span>
+        <h3 class="pstep-title">Briefing & Visión</h3>
+        <p class="pstep-desc">Entendemos el objetivo, audiencia y tono. Sin plantillas: cada proyecto comienza desde cero.</p>
+      </div>
+      <div class="pstep">
+        <span class="pstep-num">02</span>
+        <h3 class="pstep-title">Concepto & Referencias</h3>
+        <p class="pstep-desc">Moodboard y concepto visual antes de una sola hora de edición. Tú validas la dirección.</p>
+      </div>
+      <div class="pstep">
+        <span class="pstep-num">03</span>
+        <h3 class="pstep-title">Producción & VFX</h3>
+        <p class="pstep-desc">Edición, efectos, IA generativa, color y sonido. Todo en un mismo lugar.</p>
+      </div>
+      <div class="pstep">
+        <span class="pstep-num">04</span>
+        <h3 class="pstep-title">Entrega & Formatos</h3>
+        <p class="pstep-desc">Todos los formatos que necesitas: web, broadcast, social. Sin coste extra.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATAFORMAS -->
+<section class="s platforms">
+  <span class="label" style="text-align:center;display:block">Producido para</span>
+  <h2 class="h2" style="text-align:center">Toda pantalla.<br><em>Todo formato.</em></h2>
+  <p class="body-text" style="text-align:center;margin:1rem auto 3rem">Una sola visión creativa adaptada a cada plataforma y audiencia.</p>
+  <div class="platform-pills">
+    <span class="pill">📺 Televisión</span>
+    <span class="pill">▶️ YouTube</span>
+    <span class="pill">📱 Instagram & Reels</span>
+    <span class="pill">🎬 Cine & Streaming</span>
+    <span class="pill">💼 Corporativo</span>
+    <span class="pill">🛍️ eCommerce</span>
+    <span class="pill">🎮 Gaming & Esports</span>
+    <span class="pill">🏆 Eventos en Vivo</span>
+    <span class="pill">🤖 IA Generativa</span>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testi-section" id="testimonios">
+  <div class="testi-header rev">
+    <div>
+      <span class="label">Testimonios</span>
+      <h2 class="h2">Lo que dicen<br><em>nuestros clientes</em></h2>
+    </div>
+    <p class="body-text">Proyectos que superaron expectativas y relaciones que perduran más allá de un solo encargo.</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card" style="transition-delay:0s">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"La pieza de apertura que entregó para nuestro programa superó todo lo que habíamos imaginado. Efectos e IA generativa al nivel de una producción de primer orden."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">MP</div>
+        <div>
+          <span class="testi-name">María Pérez</span>
+          <span class="testi-role">Directora de Contenidos · Canal Autonómico</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card" style="transition-delay:0.12s">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Transformó nuestro brief en un spot que triplicó el CTR respecto a campañas anteriores. Dominio técnico y criterio creativo al mismo nivel."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AV</div>
+        <div>
+          <span class="testi-name">Álvaro Vidal</span>
+          <span class="testi-role">Head of Brand · Agencia Digital Madrid</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card" style="transition-delay:0.24s">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Hemos trabajado en más de 20 episodios juntos. La consistencia, la velocidad y la calidad de la edición son imbatibles. Un colaborador de largo plazo."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">CL</div>
+        <div>
+          <span class="testi-name">Carlos Llorente</span>
+          <span class="testi-role">Creador de Contenido · 380K suscriptores</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card" style="transition-delay:0.36s">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Los VFX que produjo para nuestra serie daban un acabado cinematográfico que no esperábamos a ese presupuesto. Absolutamente recomendable."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">SR</div>
+        <div>
+          <span class="testi-name">Sofía Ruiz</span>
+          <span class="testi-role">Productora Ejecutiva · Productora Independiente</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card" style="transition-delay:0.48s">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"El color grading de nuestros lookbooks de temporada elevó el estándar visual de la marca. Sabe leer perfectamente el tono que busca cada proyecto."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">LM</div>
+        <div>
+          <span class="testi-name">Lucía Moreno</span>
+          <span class="testi-role">Creative Director · Fashion Brand</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card" style="transition-delay:0.6s">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Incorporó generación con IA en nuestra campaña cuando aún pocos sabían usarla. El resultado fue viral. Un adelantado en su campo."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">JF</div>
+        <div>
+          <span class="testi-name">Jorge Fernández</span>
+          <span class="testi-role">CEO · Startup Tecnológica</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="s" id="contacto">
+  <div class="contact-grid">
+    <div class="contact-info rev">
+      <span class="label">Contacto</span>
+      <h2 class="h2">Hablemos de<br>tu <em>proyecto</em></h2>
+      <p class="body-text" style="margin-top:1.25rem">Cuéntame qué tienes en mente. Respondo en menos de 24 horas.</p>
+      <div class="contact-detail">
+        <div class="contact-icon">✉️</div>
+        <div><span class="contact-detail-label">Email</span><a href="mailto:hola@frame.studio">hola@frame.studio</a></div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">📍</div>
+        <div><span class="contact-detail-label">Ubicación</span><span>España · Trabajo remoto global</span></div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">⚡</div>
+        <div><span class="contact-detail-label">Respuesta</span><span>Menos de 24 horas</span></div>
+      </div>
+    </div>
+    <div class="rev" style="transition-delay:0.15s">
+      <div class="form-box">
+        <div id="form-success" class="form-success">
+          <div class="form-success-icon">✓</div>
+          <p class="form-success-title">¡Mensaje enviado!</p>
+          <p class="form-success-sub">Te respondo en menos de 24h.</p>
+        </div>
+        <div id="form-body">
+          <div class="fg-2col">
+            <div class="fg"><label class="fl">Nombre</label><input type="text" class="fi" id="f-name" placeholder="Tu nombre"></div>
+            <div class="fg"><label class="fl">Email</label><input type="email" class="fi" id="f-email" placeholder="tu@email.com"></div>
+          </div>
+          <div class="fg" style="margin-bottom:1rem"><label class="fl">Tipo de proyecto</label>
+            <select class="fi" id="f-type">
+              <option value="" disabled selected>Selecciona</option>
+              <option>VFX & Efectos Visuales</option>
+              <option>Generación con IA</option>
+              <option>TV & Broadcast</option>
+              <option>Marketing & Publicidad</option>
+              <option>YouTube & Digital</option>
+              <option>Color & Post-producción</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="fg" style="margin-bottom:1rem"><label class="fl">Presupuesto</label>
+            <select class="fi" id="f-budget">
+              <option value="" disabled selected>Selecciona un rango</option>
+              <option>Menos de 500 €</option>
+              <option>500 € – 1.500 €</option>
+              <option>1.500 € – 5.000 €</option>
+              <option>Más de 5.000 €</option>
+              <option>Por definir</option>
+            </select>
+          </div>
+          <div class="fg" style="margin-bottom:0.5rem"><label class="fl">Cuéntame tu proyecto</label><textarea class="fi" id="f-message" rows="4" placeholder="Describe tu idea, plazos, referencias..."></textarea></div>
+          <button class="fsub" onclick="submitForm()">Enviar mensaje →</button>
+          <p class="ferr" id="ferr">Por favor rellena todos los campos obligatorios.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">Frame</a>
+  <ul class="footer-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#trabajo">Trabajo</a></li>
+    <li><a href="#sobre">Estudio</a></li>
+    <li><a href="#testimonios">Clientes</a></li>
+    <li><a href="mailto:hola@frame.studio">hola@frame.studio</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Frame Studio</span>
+</footer>
+
+<script>
+// ── SCROLL REVEAL ──
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('vis'); ro.unobserve(e.target); }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.rev, .testi-card').forEach(el => ro.observe(el));
+
+// ── VIDEO CAROUSEL ──
+const track = document.getElementById('reel-track');
+const cards = track.querySelectorAll('.reel-card');
+const dots = document.querySelectorAll('.reel-dot');
+let current = 0;
+const cardW = () => cards[0].offsetWidth + 20; // width + gap
+
+function goTo(i) {
+  if (i < 0) i = 0;
+  if (i > cards.length - 1) i = cards.length - 1;
+  current = i;
+  track.style.transform = `translateX(-${current * cardW()}px)`;
+  dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
+}
+
+document.getElementById('reel-prev').addEventListener('click', () => goTo(current - 1));
+document.getElementById('reel-next').addEventListener('click', () => goTo(current + 1));
+dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
+
+// Touch swipe
+let tx = 0;
+track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+track.addEventListener('touchend', e => {
+  const dx = tx - e.changedTouches[0].clientX;
+  if (Math.abs(dx) > 40) goTo(dx > 0 ? current + 1 : current - 1);
+}, {passive:true});
+
+// ── FORM ──
+function submitForm() {
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const type = document.getElementById('f-type').value;
+  const msg = document.getElementById('f-message').value.trim();
+  const err = document.getElementById('ferr');
+  if (!name || !email || !type || !msg) { err.style.display = 'block'; return; }
+  err.style.display = 'none';
+  document.getElementById('form-body').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+}
+</script>
+</body>
+</html>
