@@ -35,7 +35,8 @@ nav {
   -webkit-backdrop-filter: saturate(180%) blur(24px);
   border-bottom: 1px solid rgba(0,0,0,0.08);
 }
-.nav-logo { font-size: 1.1rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--black); text-decoration: none; }
+.nav-logo { display: flex; align-items: center; text-decoration: none; }
+.nav-logo-img { height: 28px; width: auto; display: block; object-fit: contain; }
 .nav-links { display: flex; gap: 2.25rem; list-style: none; }
 .nav-links a { font-size: 0.82rem; font-weight: 300; color: var(--g600); text-decoration: none; letter-spacing: 0.01em; transition: color 0.2s; }
 .nav-links a:hover { color: var(--black); }
@@ -545,7 +546,7 @@ footer { border-top: 1px solid var(--g100); padding: 2rem 6%; display: flex; ali
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">Studio 4.11</a>
+  <a href="#" class="nav-logo"><img src="logo411-1.png" alt="Studio 4.11" class="nav-logo-img"></a>
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#trabajo">Trabajo</a></li>
@@ -1010,7 +1011,7 @@ footer { border-top: 1px solid var(--g100); padding: 2rem 6%; display: flex; ali
 
 <!-- FOOTER -->
 <footer>
-  <a href="#" class="footer-logo">Studio 4.11</a>
+  <a href="#" class="footer-logo"><img src="logo411-1.png" alt="Studio 4.11" class="nav-logo-img" style="height:22px;opacity:0.7;"></a>
   <ul class="footer-links">
     <li><a href="#servicios">Servicios</a></li>
     <li><a href="#trabajo">Trabajo</a></li>
