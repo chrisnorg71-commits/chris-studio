@@ -574,7 +574,7 @@ footer { border-top: 1px solid var(--g100); padding: 2rem 6%; display: flex; ali
 
 <!-- HERO -->
 <section class="hero">
-  <video class="hero-video" src="videohero1.mp4" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+  <video class="hero-video" id="hero-video" src="videohero1.mp4" autoplay muted playsinline preload="auto" aria-hidden="true"></video>
   <div class="hero-grad"></div>
   <div class="hero-content">
     <span class="hero-tag">Producción · VFX · IA · Edición</span>
@@ -1022,6 +1022,13 @@ footer { border-top: 1px solid var(--g100); padding: 2rem 6%; display: flex; ali
 </footer>
 
 <script>
+// ── HERO VIDEO — freeze on last frame ──
+const heroVideo = document.getElementById('hero-video');
+heroVideo.addEventListener('ended', () => {
+  heroVideo.currentTime = heroVideo.duration;
+  heroVideo.pause();
+});
+
 // ── SCROLL REVEAL ──
 const ro = new IntersectionObserver(entries => {
   entries.forEach(e => {
